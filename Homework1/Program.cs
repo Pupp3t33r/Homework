@@ -13,7 +13,7 @@ namespace Homework1
             var newElement = new DateTime(2021, 10, 31);
 
 
-            RunStuff[] run = { RunStuff.LinkedList };
+            RunStuff[] run = { RunStuff.DictionaryInterface, RunStuff.LinkedList };
 
             foreach (var item in run)
             {
@@ -75,6 +75,7 @@ namespace Homework1
                         #endregion
                         break;
                     case RunStuff.DictionaryInterface:
+                        #region DictionaryInterface
                         var Key1 = new MyKey("Re-Animator", 104);
                         var Key2 = new MyOtherKey() { Name = "Hellraiser", Runtime = 94 };
                         var Value1 = new MyValue(1985);
@@ -82,15 +83,31 @@ namespace Homework1
 
                         Dictionary<IKey, IValue> Dictionary = new()
                         {
-                            { Key1,  Value1},
-                            { Key2,  Value2}
+                            { Key2,  Value2},
+                            { Key1,  Value1}
                         };
+
+                        Console.WriteLine("Sorted List of Values:");
+                        List<IValue> values = new(Dictionary.Values);
+                        values.Sort();
+
+                        foreach (var val in values)
+                        {
+                            Console.WriteLine(val);
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine("Dictionary:");
                         foreach (var key in Dictionary.Keys)
                         {
                             Console.WriteLine($"{key} : {Dictionary.GetValueOrDefault(key)}");
                         }
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        #endregion
                         break;
                     case RunStuff.LinkedList:
+                        #region LinkedList
                         LinkedList<string> LL = new();
                         LL.AddLast("A Nightmare on Elm Street");
                         LL.AddLast("A Nightmare on Elm Street 2: Freddy's Revenge");
@@ -109,6 +126,7 @@ namespace Homework1
                             Console.WriteLine(fred);
                         }
                         Console.WriteLine();
+                        #endregion
                         break;
                     default:
                         break;
